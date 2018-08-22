@@ -17,9 +17,9 @@ def get_dependency(filename):
 def dep_tree(root, prefix=None):
     if not prefix:
         arch = get_arch(root)
-        #print('Arch =', arch)
+        # print('Arch =', arch)
         prefix = '/usr/'+arch+'-w64-mingw32/bin'
-        #print('Using default prefix', prefix)
+        # print('Using default prefix', prefix)
     dep_dlls = dict()
 
     def dep_tree_impl(root, prefix):
@@ -38,8 +38,8 @@ def dep_tree(root, prefix=None):
 
 
 def get_arch(filename):
-    type2arch= {pefile.OPTIONAL_HEADER_MAGIC_PE: 'i686',
-                pefile.OPTIONAL_HEADER_MAGIC_PE_PLUS: 'x86_64'}
+    type2arch = {pefile.OPTIONAL_HEADER_MAGIC_PE: 'i686',
+                 pefile.OPTIONAL_HEADER_MAGIC_PE_PLUS: 'x86_64'}
     pe = pefile.PE(filename)
     try:
         return type2arch[pe.PE_TYPE]
@@ -47,8 +47,8 @@ def get_arch(filename):
         sys.stderr.write('Error: unknown architecture')
         sys.exit(1)
 
+
 if __name__ == '__main__':
     filename = sys.argv[1]
     for dll, full_path in dep_tree(filename).items():
         print(' ' * 7, dll, '=>', full_path)
-
