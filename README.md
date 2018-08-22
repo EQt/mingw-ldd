@@ -1,6 +1,7 @@
-### mingw-ldd
+# `mingw-ldd`
 
-Tool to list dependencies of a dll using the python module `pefile`.
+Tool to [list dynamic dependencies][wiki] of a dll using the Python module `pefile`, similar to the Unix tool.
+
 
 Kudos to yan12125 for the original script:
 https://gist.github.com/yan12125/63c7241596e628553d21
@@ -25,3 +26,6 @@ https://gist.github.com/yan12125/63c7241596e628553d21
 
 You can also checkout another similar tool:
 https://github.com/LRN/ntldd
+
+
+[wiki]: https://en.wikipedia.org/wiki/Ldd_(Unix)
