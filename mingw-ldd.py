@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # WTFPL - Do What the Fuck You Want to Public License
+"""
+print dll dependencies
+"""
 from __future__ import print_function
 import pefile
 import os
@@ -49,6 +52,13 @@ def get_arch(filename):
 
 
 if __name__ == '__main__':
-    filename = sys.argv[1]
-    for dll, full_path in dep_tree(filename).items():
-        print(' ' * 7, dll, '=>', full_path)
+    import argparse
+
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('dll', nargs='+', help='file which should be analyzed')
+    args = p.parse_args()
+
+    for filename in args.dll:
+        print(filename + ':')
+        for dll, full_path in dep_tree(filename).items():
+            print(' ' * 7, dll, '=>', full_path)
